@@ -12,7 +12,10 @@ class GoL(object):
         representation = ""
         for row in self._playfield:
             for value in row:
-                representation += str(value) + " "
+                if value:
+                    representation += "X "
+                else:
+                    representation += ". "
             representation += '\n'
         return header + representation
         
@@ -97,14 +100,14 @@ if __name__ == '__main__':
     clear()
     myGoL = GoL(10, 10)
     rowcount, columncount = myGoL.getDimension()
+    random.seed(3)
     for row in range(rowcount):
         for column in range(columncount):
-            random.seed(0)
             myGoL.setField(row, column, 1 if random.random() > 0.5 else 0)
     while(1):
         clear()
         print myGoL
         myGoL.step()
-        time.sleep(1)
+        time.sleep(0.1)
     
                 
