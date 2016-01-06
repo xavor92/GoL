@@ -19,6 +19,9 @@ class GoL(object):
     def getStep(self):
         return self._stepCount
     
+    def getDimension(self):
+        return (len(self._playfield), len(self._playfield[0]))
+    
     def step(self):
         self._stepCount += 1
         
@@ -27,3 +30,40 @@ class GoL(object):
         
     def getField(self, row, column):
         return self._playfield[row][column]
+    
+    def getLiveNeighbours(self, row, column):
+        return self._countNeighbours()[row][column]
+        
+    def _countNeighbours(self):
+        '''
+        count neighbours of cells and create map
+        
+        step through all fields of _playfield, if field contains a 1, increment 
+        values in the surrounding fields of the neighbourmap
+        '''
+        rowcount, columncount = self.getDimension()
+        neighbours = [[0 for _i in range(columncount)] for _i in range(rowcount)]
+        for row in range(rowcount):
+            for column in range(columncount):
+                if self.getField(row, column):
+                    # increase neighbours in upper row
+                    if row - 1 >= 0:
+                        if column - 1 >= 0:
+                            neighbours[row-1][column-1] += 1
+                        neighbours[row-1][column] += 1
+                        if column + 1 <= columncount:
+                            neighbours[row-1][column +1] += 1
+                    # increase neighbours in same row
+                    if column - 1 >= 0:
+                        neighbours[row][column-1] += 1
+                    if column + 1 <= columncount:
+                        neighbours[row][column + 1] += 1
+                    # increase neighbours in lower row
+                    if row + 1 <= rowcount:
+                        if column - 1 >= 0:
+                            neighbours[row+1][column-1] += 1
+                        neighbours[row+1][column] += 1
+                        if column + 1 <= columncount:
+                            neighbours[row+1][column +1] += 1
+        return neighbours
+                
