@@ -24,6 +24,17 @@ class GoL(object):
     
     def step(self):
         self._stepCount += 1
+        neighbours = self._countNeighbours()
+        for row in range(len(neighbours)):
+            for column in range(len(neighbours[0])):
+                # if 3 neighbours, alive in next round
+                if neighbours[row][column] == 3:
+                    self._playfield[row][column] = 1
+                # if 2 neighbours and alive, stay alive
+                elif neighbours[row][column] == 2 and self._playfield[row][column] == 1:
+                    self._playfield[row][column] = 1
+                else:
+                    self._playfield[row][column] = 0
         
     def setField(self, row, column, value):
         self._playfield[row][column] = value

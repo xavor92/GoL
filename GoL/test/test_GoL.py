@@ -71,6 +71,17 @@ class FunctionTests(unittest.TestCase):
         self.GoL.step()
         self.assertEqual(self.GoL.getLiveCells(), 0)
         
-        
+    def test_SquareStaysAlive(self):
+        self.GoL.setField(row = 0, column = 0, value = 1)
+        self.GoL.setField(row = 1, column = 0, value = 1)
+        self.GoL.setField(row = 0, column = 1, value = 1)
+        self.GoL.setField(row = 1, column = 1, value = 1)
+        self.assertEqual(self.GoL.getLiveCells(), 4)
+        self.GoL.step()
+        self.assertEqual(self.GoL.getLiveCells(), 4)
+        self.assertTrue(self.GoL.getField(0, 0) == 1)
+        self.assertTrue(self.GoL.getField(1, 0) == 1)
+        self.assertTrue(self.GoL.getField(0, 1) == 1)
+        self.assertTrue(self.GoL.getField(1, 1) == 1)
         
         
