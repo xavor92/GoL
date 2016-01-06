@@ -73,19 +73,38 @@ class GoL(object):
                         if column - 1 >= 0:
                             neighbours[row-1][column-1] += 1
                         neighbours[row-1][column] += 1
-                        if column + 1 <= columncount:
+                        if column + 1 < columncount:
                             neighbours[row-1][column +1] += 1
                     # increase neighbours in same row
                     if column - 1 >= 0:
                         neighbours[row][column-1] += 1
-                    if column + 1 <= columncount:
+                    if column + 1 < columncount:
                         neighbours[row][column + 1] += 1
                     # increase neighbours in lower row
-                    if row + 1 <= rowcount:
+                    if row + 1 < rowcount:
                         if column - 1 >= 0:
                             neighbours[row+1][column-1] += 1
                         neighbours[row+1][column] += 1
-                        if column + 1 <= columncount:
+                        if column + 1 < columncount:
                             neighbours[row+1][column +1] += 1
         return neighbours
+    
+if __name__ == '__main__':
+    import os
+    import random
+    import time
+    clear = lambda: os.system('cls')
+    clear()
+    myGoL = GoL(10, 10)
+    rowcount, columncount = myGoL.getDimension()
+    for row in range(rowcount):
+        for column in range(columncount):
+            random.seed(0)
+            myGoL.setField(row, column, 1 if random.random() > 0.5 else 0)
+    while(1):
+        clear()
+        print myGoL
+        myGoL.step()
+        time.sleep(1)
+    
                 
