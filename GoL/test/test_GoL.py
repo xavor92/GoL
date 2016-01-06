@@ -54,5 +54,14 @@ class FunctionTests(unittest.TestCase):
         self.assertEqual(self.GoL.getLiveNeighbours(5,5), 0)
         self.assertEqual(self.GoL.getLiveNeighbours(0,9), 0)
         
+    def test_WeCanCountLiveCells(self):
+        self.GoL.setField(row = 0, column = 0, value = 1)
+        self.assertEqual(self.GoL.getLiveCells(), 1)
+        self.GoL.setField(row = 1, column = 0, value = 1)
+        self.assertEqual(self.GoL.getLiveCells(), 2)
+        self.GoL.setField(row = 0, column = 1, value = 1)
+        self.assertEqual(self.GoL.getLiveCells(), 3)
+        
+        
         
         
