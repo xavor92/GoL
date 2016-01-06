@@ -4,10 +4,36 @@ Tests for Conways Game of Life
 """
 
 import unittest
-import GoL
+from GoL import GoL
 
-class Mytests(unittest.TestCase):
-    def test_WeHaveAnObjectPlayfield(self):
-        ''' Playfield needs to exists
+class InitTest(unittest.TestCase):
+    def test_WeCanInitializeAGoL(self):
+        ''' We can initialize a GoL with a given Size
         '''
-        self.assertTrue(isinstance(GoL.playfield, object))
+        self.GoL = GoL(xdim = 10, ydim = 10)
+        self.assertTrue(isinstance(self.GoL, GoL))
+        
+    def test_GoLHasCorrectDimensions(self):
+        self.GoL = GoL(xdim = 10, ydim = 10)
+        self.assertTrue( len(self.GoL._playfield) == 10)
+        for row in self.GoL._playfield:
+            self.assertTrue(len(row) == 10)
+        
+        
+class FunctionTests(unittest.TestCase):
+    def setUp(self):
+        super(FunctionTests, self).setUp()
+        self.GoL = GoL(10, 10)
+    
+    def test_WeCanPrintTheGame(self):
+        self.skipTest("Not Yet")
+        
+    def test_WeCanStepTheGoL(self):
+        self.GoL.step()
+        
+    def test_StepCountIncreases(self):
+        StepCount = self.GoL.getStep()
+        self.GoL.step()
+        self.assertTrue(StepCount + 1 == self.GoL.getStep())
+        
+        
