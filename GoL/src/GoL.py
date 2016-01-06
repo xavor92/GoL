@@ -33,6 +33,17 @@ class GoL(object):
     
     def getLiveNeighbours(self, row, column):
         return self._countNeighbours()[row][column]
+    
+    def getLiveCells(self):
+        '''
+        count live cells
+        '''
+        count = 0
+        for row in self._playfield:
+            for value in row:
+                if value:
+                    count += 1
+        return count
         
     def _countNeighbours(self):
         '''
