@@ -26,7 +26,11 @@ class FunctionTests(unittest.TestCase):
         self.GoL = GoL(10, 10)
     
     def test_WeCanPrintTheGame(self):
-        self.skipTest("Not Yet")
+        printtext = str(self.GoL)
+        empty_field = "0 0 0 0 0 0 0 0 0 0 \n" * 10
+        self.assertIn('Game of Life', printtext)
+        self.assertIn('Step', printtext)
+        self.assertIn( empty_field, printtext)
         
     def test_WeCanStepTheGoL(self):
         self.GoL.step()
