@@ -44,4 +44,15 @@ class FunctionTests(unittest.TestCase):
         self.GoL.setField(row = 2, column = 0, value = 1)
         self.assertTrue(self.GoL.getField(2, 0) == 1)
         
+    def test_WeCanGetLiveNeighbours(self):
+        self.GoL.setField(row = 0, column = 0, value = 1)
+        self.GoL.setField(row = 1, column = 0, value = 1)
+        self.GoL.setField(row = 0, column = 1, value = 1)
+        self.assertEqual(self.GoL.getLiveNeighbours(0,0), 2)
+        self.assertEqual(self.GoL.getLiveNeighbours(1,1), 3)
+        self.assertEqual(self.GoL.getLiveNeighbours(0,2), 1)
+        self.assertEqual(self.GoL.getLiveNeighbours(5,5), 0)
+        self.assertEqual(self.GoL.getLiveNeighbours(0,9), 0)
+        
+        
         
