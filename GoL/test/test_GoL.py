@@ -27,10 +27,13 @@ class FunctionTests(unittest.TestCase):
     
     def test_WeCanPrintTheGame(self):
         printtext = str(self.GoL)
-        empty_field = "0 0 0 0 0 0 0 0 0 0 \n" * 10
+        empty_field = ". . . . . . . . . . \n" * 10
         self.assertIn('Game of Life', printtext)
         self.assertIn('Step', printtext)
-        self.assertIn( empty_field, printtext)
+        self.assertIn(empty_field, printtext)
+        self.GoL.setField(row = 0, column = 0, value = 1)
+        printtext = str(self.GoL)
+        self.assertIn('X', printtext)
         
     def test_WeCanStepTheGoL(self):
         self.GoL.step()
