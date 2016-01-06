@@ -62,6 +62,15 @@ class FunctionTests(unittest.TestCase):
         self.GoL.setField(row = 0, column = 1, value = 1)
         self.assertEqual(self.GoL.getLiveCells(), 3)
         
+    def test_singleCellDiesInOneStep(self):
+        self.GoL.setField(row = 0, column = 0, value = 1)
+        self.GoL.step()
+        self.assertEqual(self.GoL.getLiveCells(), 0)
+        self.GoL.setField(row = 0, column = 0, value = 1)
+        self.GoL.setField(row = 5, column = 5, value = 1)
+        self.GoL.step()
+        self.assertEqual(self.GoL.getLiveCells(), 0)
+        
         
         
         
