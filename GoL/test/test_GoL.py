@@ -10,11 +10,11 @@ class InitTest(unittest.TestCase):
     def test_WeCanInitializeAGoL(self):
         ''' We can initialize a GoL with a given Size
         '''
-        self.GoL = GoL(xdim = 10, ydim = 10)
+        self.GoL = GoL(rows = 10, columns = 10)
         self.assertTrue(isinstance(self.GoL, GoL))
         
     def test_GoLHasCorrectDimensions(self):
-        self.GoL = GoL(xdim = 10, ydim = 10)
+        self.GoL = GoL(rows = 10, columns = 10)
         self.assertTrue( len(self.GoL._playfield) == 10)
         for row in self.GoL._playfield:
             self.assertTrue(len(row) == 10)
@@ -39,5 +39,9 @@ class FunctionTests(unittest.TestCase):
         StepCount = self.GoL.getStep()
         self.GoL.step()
         self.assertTrue(StepCount + 1 == self.GoL.getStep())
+        
+    def test_WeCanSetGetFields(self):
+        self.GoL.setField(row = 2, column = 0, value = 1)
+        self.assertTrue(self.GoL.getField(2, 0) == 1)
         
         
