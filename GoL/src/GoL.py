@@ -3,8 +3,8 @@ A Game of Live Implementation using TestDrivenDevelopment
 """
 
 class GoL(object):
-    def __init__(self, xdim, ydim):
-        self._playfield = [[0 for _i in range(ydim)] for _i in range(xdim)]
+    def __init__(self, rows, columns):
+        self._playfield = [[0 for _i in range(columns)] for _i in range(rows)]
         self._stepCount = 0
         
     def __str__(self, *args, **kwargs):
@@ -21,3 +21,9 @@ class GoL(object):
     
     def step(self):
         self._stepCount += 1
+        
+    def setField(self, row, column, value):
+        self._playfield[row][column] = value
+        
+    def getField(self, row, column):
+        return self._playfield[row][column]
